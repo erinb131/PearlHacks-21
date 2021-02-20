@@ -55,11 +55,11 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame("Sounds"))
         button5 = tk.Button(self, text="To-Do List",
                             command=lambda: controller.show_frame("ToDos"))
-        button1.pack()
-        button2.pack()
-        button3.pack()
-        button4.pack()
-        button5.pack()
+        button1.pack(pady=5)
+        button2.pack(pady=5)
+        button3.pack(pady=5)
+        button4.pack(pady=5)
+        button5.pack(pady=5)
 
 
 class GradeCalc(tk.Frame):
@@ -109,16 +109,20 @@ class Sounds(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         label.pack(side="top", fill="x", pady=10)
         label_body = tk.Label(self, text="Relax and click a button below to be transported to bliss.")
-        label_body.pack()
+        label_body.pack(pady=5)
         button_fire = tk.Button(self, text="Fire")
-        button_fire.pack()
+        button_fire.pack(pady=5)
         button_wind = tk.Button(self, text="Wind")
-        button_wind.pack()
+        button_wind.pack(pady=5)
         button_waves = tk.Button(self, text="Waves")
-        button_waves.pack()
+        button_waves.pack(pady=5)
+        button_rain = tk.Button(self, text="Rain")
+        button_rain.pack(pady=5)
+        button_piano = tk.Button(self, text="Piano")
+        button_piano.pack(pady=5)
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(pady=5)
 
 
 class ToDos(tk.Frame):
