@@ -81,6 +81,8 @@ class MentalHealth(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Mental Health", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
+        label_body = tk.Label(self, text="Your mental health is important. Below are some resources you might find helpful. ")
+        label_body.pack()
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
