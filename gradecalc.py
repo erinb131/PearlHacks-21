@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-__author__ = "Emma Lozevski"    # :D
-
 import sys
 from csv import DictWriter
 from typing import List, Dict, Optional
