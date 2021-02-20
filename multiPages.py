@@ -19,26 +19,26 @@ for frame in (frame1, frame2, frame3):
 
 #Frame 1 Code
 frame1_title = tk.Label(frame1, text="This is frame 1", bg="red")
-frame1_title.pack(fill="x")
+frame1_title.pack(fill="both", expand=True)
 
 frame1_btn = tk.Button(frame1, text="Enter",command=lambda:show_frame(frame2))
-frame1_btn.pack()
+frame1_btn.pack(fill="x", ipady=15)
 
 
 #Frame 2 Code
 frame2_title = tk.Label(frame2, text="This is frame 1", bg="yellow")
-frame2_title.pack(fill="x")
+frame2_title.pack(fill="both", expand=True)
 
 frame2_btn = tk.Button(frame2, text="Enter",command=lambda:show_frame(frame3))
-frame2_btn.pack()
+frame2_btn.pack(fill="x", ipady=15)
 
 
 #Frame 3 Code
 frame3_title = tk.Label(frame3, text="This is frame 1", bg="green")
-frame3_title.pack(fill="x")
+frame3_title.pack(fill="both", expand=True)
 
 frame3_btn = tk.Button(frame3, text="Enter",command=lambda:show_frame(frame1))
-frame3_btn.pack()
+frame3_btn.pack(fill="x", ipady=15)
 
 
 show_frame(frame1)
