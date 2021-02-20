@@ -94,7 +94,7 @@ class CoursesZooms(tk.Frame):
         tk.Frame.__init__(self, parent, bg="lightblue")
         self.controller = controller
         label = tk.Label(self, text="Courses and Zoom Links", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+        label.pack()
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
@@ -107,6 +107,15 @@ class Sounds(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Calming Sounds", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
+        label.pack(side="top", fill="x", pady=10)
+        label_body = tk.Label(self, text="Relax and click a button below to be transported to bliss.")
+        label_body.pack()
+        button_fire = tk.Button(self, text="Fire")
+        button_fire.pack()
+        button_wind = tk.Button(self, text="Wind")
+        button_wind.pack()
+        button_waves = tk.Button(self, text="Waves")
+        button_waves.pack()
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
