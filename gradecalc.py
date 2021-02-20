@@ -1,7 +1,7 @@
 """Calculates grades based on inputs from the user."""
 
 from __future__ import annotations
-
+ 
 import sys
 from csv import DictWriter
 from typing import List, Dict, Optional
