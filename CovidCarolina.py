@@ -12,27 +12,33 @@ def callback(url):
 pygame.mixer.init()
 def play_music_rain():
     pygame.mixer.music.load("mixkit-forest-rain-loop-1225.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_wind():
     pygame.mixer.music.load("mixkit-campfire-night-wind-1736.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_waves():
     pygame.mixer.music.load("mixkit-close-sea-waves-loop-1195.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_fire():
-    pygame.mixer.music.load("campfire.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.load("Crackling_Fire.wav")
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_hike():
     pygame.mixer.music.load("mixkit-crunchy-road-fast-walking-loop-1274.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
+
+pygame.mixer.init()
+def play_silence():
+    pygame.mixer.music.load("silence.wav")
+    pygame.mixer.music.play(-1)
+
 
 class SampleApp(tk.Tk):
 
@@ -231,6 +237,9 @@ class Sounds(tk.Frame):
 
         button_fire = tk.Button(self, text="Fire", command=play_music_fire)
         button_fire.pack(pady=5)
+
+        button_stop = tk.Button(self, text="Stop Music", command=play_silence)
+        button_stop.pack(pady=5)
 
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
