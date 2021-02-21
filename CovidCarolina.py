@@ -2,12 +2,14 @@ import tkinter as tk
 from tkinter import font as tkfont
 from typing import List
 from prettytable import PrettyTable
+from tkinter import *
+from tkinter import ttk
 from winsound import *
 import pygame
 import webbrowser
-
 import datetime
 import time
+from typing import List, Dict
 
 def callback(url):
     webbrowser.open_new(url)
@@ -179,7 +181,126 @@ class GradeCalc(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(pady=5)
+                
+        def gradecalc_main() -> None:
+            """Calculates grades based on inputs from the user."""
+            categories: List[str] = [] 
+            all_grades: Dict[str, Dict[str, float]] = {} 
+            weights: Dict[str, int] = {}
+            num_assignments: Dict[str, int] = {}
+            assignment_lists: Dict[str, List[str]] = {}
+            category_avgs: Dict[str, float] = {}
+            weighted_avgs: List[float] = []
+
+            num_categories: int = int(input("# of categories in final grade breakdown: "))
+
+            for i in range(num_categories):
+                category: str = input("Name of Category: ")
+                categories.append(category)
+                weights[category] = int(input("Percent of Final Grade: ")) / 100
+                num_assignments[category] = int(input("Number of Assignments in Category: "))
+
+            for item in categories:
+                category_grades: Dict[str, float] = {}
+                category_assignments: List[str] = []
+                grade_list: List[float] = []
+
+                print(item + " Grades")
+
+                for j in range(num_assignments[item]):
+                    assignment: str = input("Assignment Name: ")
+                    category_assignments.append(assignment)
+                    grade: float = float(input("Grade: "))
+                    category_grades[assignment] = grade
+                    grade_list.append(grade)
+
+                all_grades[item] = category_grades
+                assignment_lists[item] = category_assignments
+                category_avgs[item] = sum(grade_list) / num_assignments[item]
+                weighted_avgs.append(category_avgs[item] * weights[item])
+
+            # current_grade: float = 0.0
+            final_grade: float = sum(weighted_avgs)
+            letter_grade: str = get_letter_grade(final_grade)
+
+            create_treeview(categories, category_avgs, weights, assignment_lists, all_grades)
+
+            grade_label = tk.Label(self, text=("Final Grade:    " + str(final_grade) + "    " + letter_grade), 
+                                    font=controller.title_font)
+            grade_label.pack(pady=5)
+
+        def get_letter_grade(num_grade: float) -> str:
+            """Takes a numerical grade as input and returns a letter grade
+            according to the UNC standard grading scale."""
+            letter: str = ""
+
+            if num_grade >= 93:
+                letter = "A"
+            elif num_grade >= 90:
+                letter = "A-"
+            elif num_grade >= 87:
+                letter = "B+"
+            elif num_grade >= 83:
+                letter = "B"
+            elif num_grade >= 80:
+                letter = "B-"
+            elif num_grade >= 77:
+                letter = "C+"
+            elif num_grade >= 73:
+                letter = "C"
+            elif num_grade >= 70:
+                letter = "C-"
+            elif num_grade >= 65:
+                letter = "D+"
+            elif num_grade >= 60:
+                letter = "D"
+            else:
+                letter = "F"
+
+            return letter
+
+        def create_treeview(headers: List[str], avg_grades: Dict[str, float], 
+                            weights_dict: Dict[str, int], children: Dict[str, List[str]],
+                            gradebook: Dict[str, Dict[str, float]]) -> None:
+            """Displays the input and calculated output from GradeCalc as a table."""
+            my_tree = ttk.Treeview(self)
+
+            # Define columns
+            my_tree["columns"] = ["Gradebook Item", "Grade", "Weight"]
+
+            # Format columns
+            my_tree.column("#0", width=120, minwidth=25)
+            my_tree.column("Gradebook Item", anchor=W, width=120)
+            my_tree.column("Grade", anchor=CENTER, width=80)
+            my_tree.column("Weight", anchor=W, width=120)
+
+            # Create headings
+            my_tree.heading("#0", text="Label", anchor=W)
+            my_tree.heading("Gradebook Item", text="Gradebook Item", anchor=W)
+            my_tree.heading("Grade", text="Grade", anchor=CENTER)
+            my_tree.heading("Weight", text="Weight", anchor=W)
+
+            # Add data
+            count: int = 0
+            count2: int = len(headers) + count
+
+            for k in headers:
+                my_tree.insert(parent="", index="end", iid=count, text="Category", 
+                                values=(k, str(avg_grades[k]), str(weights_dict[k])))
+
+                for child in children[k]:
+                    my_tree.insert(parent=count, index="end", iid=count2, 
+                                    text="Assignment", values=(child, gradebook[k][child], "-"))
+                    count2 += 1
+                    
+                count += 1
+
+            # Pack to the screen
+            my_tree.pack(pady=20)
+
+        button = tk.Button(self, text="Calculate Class Grades", command=gradecalc_main())
+        button.pack(pady=10)
 
 
 class MentalHealth(tk.Frame):
