@@ -8,16 +8,13 @@ class SampleApp(tk.Tk):
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
-        # the container is where we'll stack a bunch of frames
-        # on top of each other, then the one we want visible
-        # will be raised above the others
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos):
+        for F in (LoginPage, StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -27,7 +24,7 @@ class SampleApp(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("StartPage")
+        self.show_frame("LoginPage")
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
@@ -35,13 +32,39 @@ class SampleApp(tk.Tk):
         frame.tkraise()
 
 
+class LoginPage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg="lightblue")
+        self.controller = controller
+
+        self.controller.title("CovidCarolina")
+        self.controller.state("zoomed")
+        self.controller.iconphoto(False,
+        tk.PhotoImage(file="C:/Users/erinb/PearlHacks-21/bacteria.png"))
+
+        welcomeBanner = tk.Label(self, text="Welcome to CovidCarolina", font=("Helvetica", 45, "bold"), fg="royalblue")
+        welcomeBanner.pack(side="top", fill="x", pady=25)
+
+        space_label = tk.Label(self, height=4, bg="light blue")
+        space_label.pack()
+
+        password_label = tk.Label(self, text="Enter your password", font=("Helvetica", 13), foreground="royalblue")
+        password_label.pack()
+
+
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="lightblue")
         self.controller = controller
-        label = tk.Label(self, text="Welcome to CovidCarolina", font=controller.title_font)
-        label.pack(side="top", fill="x", pady=10)
+
+        # self.controller.title("CovidCarolina")
+        # self.controller.state("zoomed")
+        # self.controller.iconphoto(False,
+        # tk.PhotoImage(file="C:/Users/erinb/PearlHacks-21/bacteria.png"))
+
+        welcomeBanner = tk.Label(self, text="Welcome to CovidCarolina", font=("Helvetica", 45, "bold"), foreground="royalblue")
+        welcomeBanner.pack(side="top", fill="x", pady=25)
 
         button1 = tk.Button(self, text="Grade Calculator",
                             command=lambda: controller.show_frame("GradeCalc"))
