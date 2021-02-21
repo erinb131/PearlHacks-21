@@ -1,13 +1,10 @@
 import tkinter as tk                # python 3
 from tkinter import font  as tkfont # python 3
-<<<<<<< HEAD
-=======
 from winsound import *
 import pygame
 import webbrowser
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
->>>>>>> fcb5e84e9a39947521e9f0eccbaeee4a3a0df4f8
 
 def callback(url):
     webbrowser.open_new(url)
@@ -54,13 +51,48 @@ class LoginPage(tk.Frame):
         tk.PhotoImage(file="C:/Users/erinb/PearlHacks-21/bacteria.png"))
 
         welcomeBanner = tk.Label(self, text="Welcome to CovidCarolina", font=("Helvetica", 45, "bold"), fg="royalblue")
-        welcomeBanner.pack(side="top", fill="x", pady=25)
+        welcomeBanner.pack(side="top", fill="x", pady=70)
 
         space_label = tk.Label(self, height=4, bg="light blue")
         space_label.pack()
 
-        password_label = tk.Label(self, text="Enter your password", font=("Helvetica", 13), foreground="royalblue")
-        password_label.pack()
+        onyen_label = tk.Label(self, text="Enter your ONYEN", font=("Helvetica", 18), fg="royalblue", bg="lightblue")
+        onyen_label.pack(pady=10)
+
+        my_onyen = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_onyen, font=("Helvetica", 12), width=22)
+        password_entry_box.focus_set()
+        password_entry_box.pack(ipady=6)
+
+        space_label2 = tk.Label(self, height=1, bg="light blue")
+        space_label2.pack()
+
+        password_label = tk.Label(self, text="Enter your password", font=("Helvetica", 18), fg="royalblue", bg="lightblue")
+        password_label.pack(pady=10)
+
+        my_password = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_password, font=("Helvetica", 12), width=22)
+        password_entry_box.focus_set()
+        password_entry_box.pack(ipady=6)
+
+        def handle_focus_in(_):
+            password_entry_box.configure(fg="black", show="*")
+
+        password_entry_box.bind("<FocusIn>", handle_focus_in)
+
+
+        def check_password():
+            if my_password.get() == "#goHeels":
+                controller.show_frame("StartPage")
+            else:
+                incorrect_password_label["text"]="Incorrect ONYEN/Password"
+
+        enter_button=tk.Button(self, text="Enter", command=check_password, relief="groove", borderwidth=3, width=12, height=1)
+        enter_button.pack(pady=10)
+
+        incorrect_password_label = tk.Label(self, text="", font=("Helvetica", 12), fg="midnightblue", bg="lightblue", anchor="n")
+        incorrect_password_label.pack(fill="both", expand=True)
+
 
 
 class StartPage(tk.Frame):
