@@ -19,6 +19,21 @@ def play_music_wind():
     pygame.mixer.music.load("mixkit-campfire-night-wind-1736.wav")
     pygame.mixer.music.play()
 
+pygame.mixer.init()
+def play_music_waves():
+    pygame.mixer.music.load("mixkit-close-sea-waves-loop-1195.wav")
+    pygame.mixer.music.play()
+
+pygame.mixer.init()
+def play_music_fire():
+    pygame.mixer.music.load("campfire.wav")
+    pygame.mixer.music.play()
+
+pygame.mixer.init()
+def play_music_hike():
+    pygame.mixer.music.load("mixkit-crunchy-road-fast-walking-loop-1274.wav")
+    pygame.mixer.music.play()
+
 class SampleApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -143,20 +158,20 @@ class Sounds(tk.Frame):
         label_body = tk.Label(self, text="Relax and click a button below to be transported to bliss.")
         label_body.pack(pady=5)
 
-        button_fire = tk.Button(self, text="Fire")
-        button_fire.pack(pady=5)
-
         button_wind = tk.Button(self, text="Wind", command=play_music_wind)
         button_wind.pack(pady=5)
 
-        button_waves = tk.Button(self, text="Waves")
+        button_waves = tk.Button(self, text="Waves", command=play_music_waves)
         button_waves.pack(pady=5)
 
         button_rain = tk.Button(self, text="Rain", command=play_music_rain)
         button_rain.pack(pady=5)
 
-        button_piano = tk.Button(self, text="Piano")
-        button_piano.pack(pady=5)
+        button_hike = tk.Button(self, text="Hike", command=play_music_hike)
+        button_hike.pack(pady=5)
+
+        button_fire = tk.Button(self, text="Fire", command=play_music_fire)
+        button_fire.pack(pady=5)
 
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
