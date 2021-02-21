@@ -1,7 +1,13 @@
 import tkinter as tk                # python 3
 from tkinter import font  as tkfont # python 3
+from winsound import *
+import pygame
+import webbrowser
 #import Tkinter as tk     # python 2
 #import tkFont as tkfont  # python 2
+
+def callback(url):
+    webbrowser.open_new(url)
 
 class SampleApp(tk.Tk):
 
@@ -45,6 +51,9 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Welcome to CovidCarolina", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
 
+        label_small = tk.Label(self, text="The organization app in the retro ConnectCarolina style you know and love.")
+        label_small.pack()
+
         button1 = tk.Button(self, text="Grade Calculator",
                             command=lambda: controller.show_frame("GradeCalc"))
         button2 = tk.Button(self, text="Mental Health",
@@ -83,9 +92,19 @@ class MentalHealth(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         label_body = tk.Label(self, text="Your mental health is important. Below are some resources you might find helpful. ")
         label_body.pack()
+        caps_button = tk.Button(self, text="UNC CAPS", command=lambda:callback("caps.unc.edu"))
+        caps_button.pack(pady=5)
+        sevencups_button = tk.Button(self, text="7 Cups", command=lambda:callback("www.7cups.com/"))
+        sevencups_button.pack(pady=5)
+        findatherapist_button = tk.Button(self, text="Find a Therapist", command=lambda:callback("https://www.psychologytoday.com/us/therapists"))
+        findatherapist_button.pack(pady=5)
+        self_care_tips_button = tk.Button(self, text="Self Care Tips", command=lambda:callback("https://www.everydayhealth.com/wellness/top-self-care-tips-for-being-stuck-at-home-during-the-coronavirus-pandemic/"))
+        self_care_tips_button.pack(pady=5)
+        suicide_hotline_button = tk.Button(self, text="Suicide Hotline", command=lambda:callback("https://suicidepreventionlifeline.org/"))
+        suicide_hotline_button.pack(pady=5)
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(pady=5)
 
 
 class CoursesZooms(tk.Frame):
@@ -110,16 +129,22 @@ class Sounds(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         label_body = tk.Label(self, text="Relax and click a button below to be transported to bliss.")
         label_body.pack(pady=5)
+
         button_fire = tk.Button(self, text="Fire")
         button_fire.pack(pady=5)
+
         button_wind = tk.Button(self, text="Wind")
         button_wind.pack(pady=5)
+
         button_waves = tk.Button(self, text="Waves")
         button_waves.pack(pady=5)
+
         button_rain = tk.Button(self, text="Rain")
         button_rain.pack(pady=5)
+
         button_piano = tk.Button(self, text="Piano")
         button_piano.pack(pady=5)
+
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=5)
