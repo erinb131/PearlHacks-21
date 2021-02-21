@@ -6,7 +6,6 @@ A retro-themed app modelled after ConnectCarolina but offers much more! CovidCar
 - Easy course grade calculator
 - Important links in ONE place
 - Calming ambient sounds to play including wind, rain, and waves
-- In app todo list
 - Courses with their zoom links, on one page
 - Displays time in Chapel Hill
 
