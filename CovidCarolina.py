@@ -47,8 +47,7 @@ class SampleApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (LoginPage, StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos):
-        for F in (StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos, ImportantLinks):
+        for F in (LoginPage, StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos, ImportantLinks):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
