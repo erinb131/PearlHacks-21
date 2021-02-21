@@ -8,6 +8,7 @@ A retro-themed app modelled after ConnectCarolina but offers much more! CovidCar
 - Calming ambient sounds to play including wind, rain, and waves
 - In app todo list
 - Courses with their zoom links, on one page
+- Displays time in Chapel Hill
 
 The app is "onyen" protected. Feel free to enter whatever you like for the onyen, and the password is:
 #goHeels
