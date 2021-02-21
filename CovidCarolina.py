@@ -4,6 +4,8 @@ from winsound import *
 import pygame
 import webbrowser
 
+import datetime
+import time
 
 def callback(url):
     webbrowser.open_new(url)
@@ -11,27 +13,33 @@ def callback(url):
 pygame.mixer.init()
 def play_music_rain():
     pygame.mixer.music.load("mixkit-forest-rain-loop-1225.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_wind():
     pygame.mixer.music.load("mixkit-campfire-night-wind-1736.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_waves():
     pygame.mixer.music.load("mixkit-close-sea-waves-loop-1195.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_fire():
-    pygame.mixer.music.load("campfire.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.load("Crackling_Fire.wav")
+    pygame.mixer.music.play(-1)
 
 pygame.mixer.init()
 def play_music_hike():
     pygame.mixer.music.load("mixkit-crunchy-road-fast-walking-loop-1274.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
+
+pygame.mixer.init()
+def play_silence():
+    pygame.mixer.music.load("silence.wav")
+    pygame.mixer.music.play(-1)
+
 
 class SampleApp(tk.Tk):
 
@@ -149,12 +157,15 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame("ToDos"))
         button6 = tk.Button(self, text="Important Links",
                             command=lambda: controller.show_frame("ImportantLinks"))
+
+        label_time = tk.Label(self, text="The time in Chapel Hill is " +  datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
         button1.pack(pady=5)
         button2.pack(pady=5)
         button3.pack(pady=5)
         button4.pack(pady=5)
         button5.pack(pady=5)
         button6.pack(pady=5)
+        label_time.pack(pady=5)
 
 
 class GradeCalc(tk.Frame):
@@ -164,7 +175,7 @@ class GradeCalc(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Grade Calculator", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
@@ -188,7 +199,7 @@ class MentalHealth(tk.Frame):
         self_care_tips_button.pack(pady=5)
         suicide_hotline_button = tk.Button(self, text="Suicide Hotline", command=lambda:callback("https://suicidepreventionlifeline.org/"))
         suicide_hotline_button.pack(pady=5)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=5)
 
@@ -200,8 +211,12 @@ class CoursesZooms(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Courses and Zoom Links", font=controller.title_font)
         label.pack()
+<<<<<<< HEAD
 
         button = tk.Button(self, text="Go to the start page",
+=======
+        button = tk.Button(self, text="Go back to the main page",
+>>>>>>> 7240d0cc417ffff19a80600cda6c595875a71c01
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=15)
 
@@ -311,7 +326,10 @@ class Sounds(tk.Frame):
         button_fire = tk.Button(self, text="Fire", command=play_music_fire)
         button_fire.pack(pady=5)
 
-        button = tk.Button(self, text="Go to the start page",
+        button_stop = tk.Button(self, text="Stop Music", command=play_silence)
+        button_stop.pack(pady=5)
+
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=5)
 
@@ -323,7 +341,8 @@ class ToDos(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="To-Do List", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
@@ -351,7 +370,7 @@ class ImportantLinks(tk.Frame):
         heelmail_button.pack(pady=5)
         netflix_button = tk.Button(self, text="Netflix", command=lambda:callback("https://www.netflix.com/browse"))
         netflix_button.pack(pady=5)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
