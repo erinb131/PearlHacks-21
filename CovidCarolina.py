@@ -73,7 +73,8 @@ class LoginPage(tk.Frame):
         self.controller.title("CovidCarolina")
         self.controller.state("zoomed")
         self.controller.iconphoto(False,
-        tk.PhotoImage(file="C:/Users/erinb/PearlHacks-21/bacteria.png"))
+        tk.PhotoImage(file="bacteria.png"))
+
 
         welcomeBanner = tk.Label(self, text="Welcome to CovidCarolina", font=("Helvetica", 45, "bold"), fg="royalblue")
         welcomeBanner.pack(side="top", fill="x", pady=70)
