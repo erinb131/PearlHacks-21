@@ -3,8 +3,7 @@ from tkinter import font  as tkfont # python 3
 from winsound import *
 import pygame
 import webbrowser
-#import Tkinter as tk     # python 2
-#import tkFont as tkfont  # python 2
+
 
 def callback(url):
     webbrowser.open_new(url)
@@ -201,10 +200,90 @@ class CoursesZooms(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Courses and Zoom Links", font=controller.title_font)
         label.pack()
+
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
+        button.pack(pady=15)
 
+        def click():
+            added_class = my_class.get() + "\n" + my_days.get() + "\n" + my_time.get() + "\n" + my_zoom_link.get() + "\n" + my_zoom_pwd.get()
+            class_data.delete(0.0, tk.END)
+            new_class.append(added_class)
+            class_data.insert(tk.END, new_class)
+
+
+        class_name = tk.Label(self, text="Name of Class:", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
+        class_name.pack()
+
+        my_class = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_class, font=("Helvetica", 12), width=30)
+        password_entry_box.focus_set()
+        password_entry_box.pack()
+
+        days = tk.Label(self, text="Days:", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
+        days.pack()
+
+        my_days = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_days, font=("Helvetica", 12), width=30)
+        password_entry_box.focus_set()
+        password_entry_box.pack()
+
+        time = tk.Label(self, text="Time:", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
+        time.pack()
+
+        my_time = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_time, font=("Helvetica", 12), width=30)
+        password_entry_box.focus_set()
+        password_entry_box.pack()
+
+        zoom_link = tk.Label(self, text="Zoom Link:", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
+        zoom_link.pack()
+
+        my_zoom_link = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_zoom_link, font=("Helvetica", 12), width=30)
+        password_entry_box.focus_set()
+        password_entry_box.pack()
+
+        zoom_pwd = tk.Label(self, text="Zoom Password (type \"N/A\" if none):", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
+        zoom_pwd.pack()
+
+        my_zoom_pwd = tk.StringVar()
+        password_entry_box = tk.Entry(self, textvariable=my_zoom_pwd, font=("Helvetica", 12), width=30)
+        password_entry_box.focus_set()
+        password_entry_box.pack()
+
+        submit_btn = tk.Button(self, text="Add Class", command=click)
+        submit_btn.pack(pady=15)
+
+        new_class: List[str] = []
+
+        space_label = tk.Label(self, height=6, bg="light blue")
+        space_label.pack(pady=10)
+
+
+        label = tk.Label(self, 
+                        text="Monday              Tuesday            Wednesday           Thursday              Friday", 
+                        font=controller.title_font, bg="lightblue")
+        label.pack()
+
+        space_label = tk.Label(self, height=6, bg="light blue")
+        space_label.pack(padx=150, side="left")
+
+        class_data = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        class_data.pack(side = "left")
+
+        class_data2 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        class_data2.pack(side = "left")
+
+        class_data3 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        class_data3.pack(side = "left")
+
+        class_data4 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        class_data4.pack(side = "left")
+
+        class_data5 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        class_data5.pack(side = "left")
+    
 
 class Sounds(tk.Frame):
 
