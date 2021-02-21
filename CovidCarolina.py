@@ -9,6 +9,16 @@ import webbrowser
 def callback(url):
     webbrowser.open_new(url)
 
+pygame.mixer.init()
+def play_music_rain():
+    pygame.mixer.music.load("mixkit-forest-rain-loop-1225.wav")
+    pygame.mixer.music.play()
+
+pygame.mixer.init()
+def play_music_wind():
+    pygame.mixer.music.load("mixkit-campfire-night-wind-1736.wav")
+    pygame.mixer.music.play()
+
 class SampleApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -25,7 +35,7 @@ class SampleApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos):
+        for F in (StartPage, GradeCalc, MentalHealth, CoursesZooms, Sounds, ToDos, ImportantLinks):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -64,11 +74,14 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame("Sounds"))
         button5 = tk.Button(self, text="To-Do List",
                             command=lambda: controller.show_frame("ToDos"))
+        button6 = tk.Button(self, text="Important Links",
+                            command=lambda: controller.show_frame("ImportantLinks"))
         button1.pack(pady=5)
         button2.pack(pady=5)
         button3.pack(pady=5)
         button4.pack(pady=5)
         button5.pack(pady=5)
+        button6.pack(pady=5)
 
 
 class GradeCalc(tk.Frame):
@@ -133,13 +146,13 @@ class Sounds(tk.Frame):
         button_fire = tk.Button(self, text="Fire")
         button_fire.pack(pady=5)
 
-        button_wind = tk.Button(self, text="Wind")
+        button_wind = tk.Button(self, text="Wind", command=play_music_wind)
         button_wind.pack(pady=5)
 
         button_waves = tk.Button(self, text="Waves")
         button_waves.pack(pady=5)
 
-        button_rain = tk.Button(self, text="Rain")
+        button_rain = tk.Button(self, text="Rain", command=play_music_rain)
         button_rain.pack(pady=5)
 
         button_piano = tk.Button(self, text="Piano")
@@ -160,6 +173,35 @@ class ToDos(tk.Frame):
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
+
+
+class ImportantLinks(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, bg="lightblue")
+        self.controller = controller
+        label = tk.Label(self, text="Important Links", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        label_body = tk.Label(self, text="All the links you need for success...in one page!")
+        label_body.pack()
+        sakai_button = tk.Button(self, text="Sakai", command=lambda:callback("sakai.unc.edu"))
+        sakai_button.pack(pady=5)
+        connectcarolina_button = tk.Button(self, text="ConnectCarolina", command=lambda:callback("https://connectcarolina.unc.edu/"))
+        connectcarolina_button.pack(pady=5)
+        coursicle_button = tk.Button(self, text="Coursicle", command=lambda:callback("https://www.coursicle.com/unc/"))
+        coursicle_button.pack(pady=5)
+        groupme_button = tk.Button(self, text="GroupMe", command=lambda:callback("https://web.groupme.com/chats"))
+        groupme_button.pack(pady=5)
+        google_docs_button = tk.Button(self, text="Google Docs", command=lambda:callback("https://www.google.com/docs/about/"))
+        google_docs_button.pack(pady=5)
+        heelmail_button = tk.Button(self, text="Heelmail", command=lambda:callback("http://heelmail.unc.edu/"))
+        heelmail_button.pack(pady=5)
+        netflix_button = tk.Button(self, text="Netflix", command=lambda:callback("https://www.netflix.com/browse"))
+        netflix_button.pack(pady=5)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
+
 
 
 if __name__ == "__main__":
