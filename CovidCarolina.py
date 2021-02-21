@@ -1,5 +1,7 @@
-import tkinter as tk                # python 3
-from tkinter import font  as tkfont # python 3
+import tkinter as tk
+from tkinter import font as tkfont
+from typing import List
+from prettytable import PrettyTable
 from winsound import *
 import pygame
 import webbrowser
@@ -211,20 +213,51 @@ class CoursesZooms(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Courses and Zoom Links", font=controller.title_font)
         label.pack()
-<<<<<<< HEAD
 
-        button = tk.Button(self, text="Go to the start page",
-=======
         button = tk.Button(self, text="Go back to the main page",
->>>>>>> 7240d0cc417ffff19a80600cda6c595875a71c01
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=15)
 
+        def undelimit(delimited: str) -> List[str]:
+            """Returns a list of the groups of chracters in the given string separated by the commas."""
+            undelimited: List[str] = []
+            item: str = ""
+
+            for char in delimited:
+                if char == " ":
+                    undelimited.append(item)
+                    item = ""
+                else:
+                    item += char
+
+            undelimited.append(item)
+
+            return undelimited
+
+
         def click():
-            added_class = my_class.get() + "\n" + my_days.get() + "\n" + my_time.get() + "\n" + my_zoom_link.get() + "\n" + my_zoom_pwd.get()
-            class_data.delete(0.0, tk.END)
-            new_class.append(added_class)
-            class_data.insert(tk.END, new_class)
+            added_class = my_class.get() + "\n" + my_time.get() + "\n" + my_zoom_link.get() + "\n" + my_zoom_pwd.get() + "\n\n"
+            days_of_week = undelimit(my_days.get())
+ 
+            i = 0
+            while i < len(days_of_week):
+                if days_of_week[i] == "Monday":
+                    new_class.append(added_class)
+                    monday.insert(tk.END, new_class[len(new_class)-1])
+                elif days_of_week[i] == "Tuesday":
+                    new_class.append(added_class)
+                    tuesday.insert(tk.END, new_class[len(new_class)-1])
+                elif days_of_week[i] == "Wednesday":
+                    new_class.append(added_class)
+                    wednesday.insert(tk.END, new_class[len(new_class)-1])
+                elif days_of_week[i] == "Thursday":
+                    new_class.append(added_class)
+                    thursday.insert(tk.END, new_class[len(new_class)-1])
+                elif days_of_week[i] == "Friday":
+                    new_class.append(added_class)
+                    friday.insert(tk.END, new_class[len(new_class)-1])
+
+                i += 1
 
 
         class_name = tk.Label(self, text="Name of Class:", font=("Helvetica", 12), fg="royalblue", bg="lightblue")
@@ -284,20 +317,20 @@ class CoursesZooms(tk.Frame):
         space_label = tk.Label(self, height=6, bg="light blue")
         space_label.pack(padx=150, side="left")
 
-        class_data = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
-        class_data.pack(side = "left")
+        monday = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        monday.pack(side = "left")
 
-        class_data2 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
-        class_data2.pack(side = "left")
+        tuesday = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        tuesday.pack(side = "left")
 
-        class_data3 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
-        class_data3.pack(side = "left")
+        wednesday = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        wednesday.pack(side = "left")
 
-        class_data4 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
-        class_data4.pack(side = "left")
+        thursday = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        thursday.pack(side = "left")
 
-        class_data5 = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
-        class_data5.pack(side = "left")
+        friday = tk.Text(self, font=("Helvetica", 12), width=22, height=26)
+        friday.pack(side = "left")
     
 
 class Sounds(tk.Frame):
