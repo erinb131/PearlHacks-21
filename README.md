@@ -12,3 +12,4 @@ A retro-themed app modelled after ConnectCarolina but offers much more! CovidCar
 The app is "onyen" protected. Feel free to enter whatever you like for the onyen, and the password is:
 #goHeels
 
+** Made for PearlHacks 2021 **
