@@ -1,6 +1,6 @@
 # CovidCarolina
 
-A retro-themed app modelled after ConnectCarolina but offers much more! CovidCarolina has several features for the remote student, including:
+A retro-themed app modelled after ConnectCarolina but offers much more! CovidCarolina has several features for the remote student to survive college during the pandemic, including:
 
 - Mental health support
 - Easy course grade calculator
