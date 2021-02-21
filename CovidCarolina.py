@@ -3,8 +3,8 @@ from tkinter import font  as tkfont # python 3
 from winsound import *
 import pygame
 import webbrowser
-#import Tkinter as tk     # python 2
-#import tkFont as tkfont  # python 2
+import datetime
+import time
 
 def callback(url):
     webbrowser.open_new(url)
@@ -156,12 +156,15 @@ class StartPage(tk.Frame):
                             command=lambda: controller.show_frame("ToDos"))
         button6 = tk.Button(self, text="Important Links",
                             command=lambda: controller.show_frame("ImportantLinks"))
+
+        label_time = tk.Label(self, text="The time in Chapel Hill is " +  datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
         button1.pack(pady=5)
         button2.pack(pady=5)
         button3.pack(pady=5)
         button4.pack(pady=5)
         button5.pack(pady=5)
         button6.pack(pady=5)
+        label_time.pack(pady=5)
 
 
 class GradeCalc(tk.Frame):
@@ -171,7 +174,7 @@ class GradeCalc(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Grade Calculator", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
@@ -195,7 +198,7 @@ class MentalHealth(tk.Frame):
         self_care_tips_button.pack(pady=5)
         suicide_hotline_button = tk.Button(self, text="Suicide Hotline", command=lambda:callback("https://suicidepreventionlifeline.org/"))
         suicide_hotline_button.pack(pady=5)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=5)
 
@@ -207,7 +210,7 @@ class CoursesZooms(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Courses and Zoom Links", font=controller.title_font)
         label.pack()
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
@@ -241,7 +244,7 @@ class Sounds(tk.Frame):
         button_stop = tk.Button(self, text="Stop Music", command=play_silence)
         button_stop.pack(pady=5)
 
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack(pady=5)
 
@@ -253,7 +256,8 @@ class ToDos(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="To-Do List", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
@@ -281,7 +285,7 @@ class ImportantLinks(tk.Frame):
         heelmail_button.pack(pady=5)
         netflix_button = tk.Button(self, text="Netflix", command=lambda:callback("https://www.netflix.com/browse"))
         netflix_button.pack(pady=5)
-        button = tk.Button(self, text="Go to the start page",
+        button = tk.Button(self, text="Go back to the main page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
 
