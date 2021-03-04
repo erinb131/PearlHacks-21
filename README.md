@@ -13,3 +13,5 @@ The app is "onyen" protected. Feel free to enter whatever you like for the onyen
 #goHeels
 
 ** Made for PearlHacks 2021 **
+
+devpost submission link: https://devpost.com/software/covidcarolina
